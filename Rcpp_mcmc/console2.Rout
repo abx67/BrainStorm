@@ -1,0 +1,62 @@
+
+R version 3.4.3 (2017-11-30) -- "Kite-Eating Tree"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library(Rcpp)
+> library(bayesm)
+> library(devtools)#,lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
+> library(RcppArmadillo)#,lib.loc="/Library/Frameworks/R.framework/Versions/3.4/Resources/library")
+> betac=rnorm(11)
+> y=rnorm(10)
+> X=matrix(1:1000,100)
+> count_out=10
+> initial_price_id=5
+> initial_price_state_dropped=matrix(runif(100),10)*10
+> initial_price_state_dropped=runif(10)
+> s1=5
+> transition_matrix_median_steps=matrix(runif(100),10)
+> price_transition_states=matrix(rnorm(100),10)
+> vec_price_states_probs=runif(10)
+> draws_length=5
+> number_price_simulations=10
+> flag_markovian=TRUE
+> flag_know_state=FALSE
+> 
+> sourceCpp("llmnl_initial_mcprice_bayesm.cpp")
+> llmnl_initial_mcprice(betac,y,X,count_out,initial_price_id,initial_price_state_dropped,s1,
++                        transition_matrix_median_steps,price_transition_states,
++                        vec_price_states_probs,draws_length,number_price_simulations,
++                        flag_markovian,flag_know_state)
+ok??
+ok??
+ok??
+ok??
+ok??
+ok??
+ok??
+ok??
+ok??
+ok??
+
+error: Mat::operator(): index out of bounds
+Error in llmnl_initial_mcprice(betac, y, X, count_out, initial_price_id,  : 
+  Mat::operator(): index out of bounds
+Calls: llmnl_initial_mcprice -> <Anonymous>
+Execution halted
